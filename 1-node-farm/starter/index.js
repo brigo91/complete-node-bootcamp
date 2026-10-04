@@ -1,8 +1,8 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
-const slugify = require('slugify');
-const replaceTemplate = require('./modules/replaceTemplate');
+// const slugify = require('slugify');
+// const replaceTemplate = require('./modules/replaceTemplate');
 
 /////////////////////////////////
 // FILES
@@ -30,3 +30,13 @@ const replaceTemplate = require('./modules/replaceTemplate');
 //   });
 // });
 // console.log('Will read file!');
+
+/////////////////////////////////
+// SERVER
+const server = http.createServer((req, res) => {
+	res.end('Hello from the server!');
+});
+
+server.listen(8000, 'localhost', () => {
+	console.log('Listening to requests on port 8000');
+});
