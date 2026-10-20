@@ -106,7 +106,7 @@ tourSchema.post('find', function(docs, next) {
   next();
 });
 
-tourScema.pre('aggregate', function(next) {
+tourSchema.pre('aggregate', function(next) {
   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
   next();
 });
