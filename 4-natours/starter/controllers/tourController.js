@@ -34,12 +34,13 @@ exports.createTour = catchAsync(async (req, res, next) => {
 });
 
 exports.getTour = catchAsync(async (req, res, next) => {
-
+	let tour;
 	try {
-		const tour = await Tour.findById(req.params.id);
+		tour = await Tour.findById(req.params.id);
 	} catch (err) {
 		return next(new AppError('No tour found with that ID', 404));
 	}
+
 	
 	res.status(200).json({
 		status: 'success',
@@ -50,8 +51,9 @@ exports.getTour = catchAsync(async (req, res, next) => {
 });
 
 exports.updateTour = catchAsync(async (req, res, next) => {
+	let tour;
 	try {
-		const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+		tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
 			new: true,
 			runValidators: true
 		});
