@@ -9,11 +9,14 @@ router.post('/login', authController.login);
 router.post('/forgotPassword', authController.forgotPassword);
 // router.patch('/resetPassword/:token', authController.resetPassword);
 
+router.use(authController.protect);
+
 router.route('/me').get(
-  authController.protect,
   userController.getMe,
   userController.getUser
 );
+
+router.use(authController.restrictTo('admin'));
 
 router.route('/')
   .get(userController.getAllUsers)
